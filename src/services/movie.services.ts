@@ -1,8 +1,14 @@
 import { Movie } from "protocols";
-import { movieReposotories } from "../repositories/movie.repositories";
+import { movieReposotories } from "@/repositories/movie.repositories";
 
 async function create(movie: Movie) {
   await movieReposotories.create(movie);
 }
 
-export const movieServices = { create };
+async function read() {
+  const { rows: movies } = await movieReposotories.read();
+
+  return movies;
+}
+
+export const movieServices = { create, read };

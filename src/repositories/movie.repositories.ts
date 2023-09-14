@@ -1,5 +1,5 @@
-import { db } from "../database/database";
-import { Movie } from "../protocols";
+import { db } from "@/database/database";
+import { Movie } from "@/protocols";
 
 async function create({ name, platform, genre, status }: Movie) {
   await db.query(
@@ -8,10 +8,12 @@ async function create({ name, platform, genre, status }: Movie) {
   );
 }
 
-//async function read() {}
+async function read() {
+  return await db.query<Movie>("SELECT * FROM movies;");
+}
 
 //async function update() {}
 
 //async function delete() {}
 
-export const movieReposotories = { create };
+export const movieReposotories = { create, read };

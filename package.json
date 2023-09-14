@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "dev": "nodemon ./src/app.ts",
-    "build": "npx tsc"
+    "build": "npx tsc && tsc-alias"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +26,8 @@
     "@types/pg": "^8.10.2",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.7",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.2.2"
   }
 }

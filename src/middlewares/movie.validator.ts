@@ -1,7 +1,7 @@
-import { invalidDataError } from "../errors/invalid.data";
+import { invalidDataError } from "@/errors/invalid.data";
 import { NextFunction, Request, Response } from "express";
-import { movieSchemas } from "../schemas/movie.schemas";
-import { schemaValidators } from "../validators/schema.validators";
+import { movieSchemas } from "@/schemas/movie.schemas";
+import { schemaValidators } from "@/validators/schema.validators";
 
 export function movieValidator(
   req: Request,
