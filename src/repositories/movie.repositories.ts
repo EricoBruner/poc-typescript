@@ -26,8 +26,8 @@ async function update(
   );
 }
 
-//async function update() {}
+async function deleteById(id: number) {
+  return await db.query(`DELETE FROM movies WHERE id=$1;`, [id]);
+}
 
-//async function delete() {}
-
-export const movieReposotories = { create, read, update, readById };
+export const movieReposotories = { create, read, update, readById, deleteById };

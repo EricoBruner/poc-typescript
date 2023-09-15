@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { movieServices } from "@/services/movie.services";
-import { Movie, MovieCreateData } from "@/protocols";
+import { MovieCreateData } from "@/protocols";
 import httpStatus from "http-status";
 import { invalidDataError } from "@/errors/invalid.data";
 
@@ -22,7 +22,7 @@ async function update(req: Request, res: Response) {
   const movie = req.body as MovieCreateData;
   let { id } = req.params;
 
-  if (!Number.isNaN(id)) {
+  if (!/^[0-9]+$/.test(id)) {
     throw invalidDataError("Id must be a number!");
   }
 
@@ -31,4 +31,16 @@ async function update(req: Request, res: Response) {
   return res.sendStatus(httpStatus.OK);
 }
 
-export const movieControllers = { create, read, update };
+async function deleteById(req: Request, res: Response) {
+  let { id } = req.params;
+
+  if (!/^[0-9]+$/.test(id)) {
+    throw invalidDataError("Id must be a number!");
+  }
+
+  await movieServices.deleteById(parseInt(id));
+
+  return res.sendStatus(httpStatus.OK);
+}
+
+export const movieControllers = { create, read, update, deleteById };

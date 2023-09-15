@@ -20,4 +20,12 @@ async function update(movie: MovieCreateData, id: number) {
   }
 }
 
-export const movieServices = { create, read, update };
+async function deleteById(id: number) {
+  const resp = await movieReposotories.deleteById(id);
+
+  if (resp.rowCount == 0) {
+    throw notFoundError("Movie not found!");
+  }
+}
+
+export const movieServices = { create, read, update, deleteById };
